@@ -33,10 +33,10 @@ function getWeather() {
             let temp = data.main.temp;
             let tempTitle = "";
             if (temp <= coldTempMax) {
-                tempTitle = "Brr its cold..why you don't grab some hot cocoa and watch..."
+                tempTitle = `${temp} Brr its cold..why you don't grab some hot cocoa and watch...`
                 movieTitle = getRandomMovie('cold');
             } else if (temp <= perfectTempMax) {
-                tempTitle = " Weather looks perfect...why don't you enjoy...."
+                tempTitle = `${temp} ºF Weather looks perfect...why don't you enjoy....`
                 movieTitle = getRandomMovie('perfect');
             } else {
                 tempTitle = `${temp} ºF today! Here's is a movie for this hot weather`
