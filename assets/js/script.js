@@ -19,7 +19,7 @@ let appID = "d1dfd9b71c61f4f9b6151a02ee936efa"
 
 
 
-document.getElementById('search-button').addEventListener('click', function() {
+document.getElementById('search-button').addEventListener('click', function () {
     console.log('click')
     let searchCity = document.querySelector('#search-bar').value
     console.log(searchCity)
@@ -29,8 +29,9 @@ document.getElementById('search-button').addEventListener('click', function() {
 })
 
 function getWeather(searchCity) {
-    //default to SB for testing purposes
-    //searchCity = 'Santa Barbara'
+
+    document.querySelector('.section').empty
+
     fetch(
         `http://api.openweathermap.org/data/2.5/weather?&appid=${appID}&q=${searchCity}` + '&units=imperial'
 
@@ -55,11 +56,13 @@ function getWeather(searchCity) {
                 movieTitle = getRandomMovie('perfect');
             } else {
                 tempTitle = `${temp} ºF in ${searchCity} today! Too hot in here...You shoudl watch..`
+                
+            }
             //update content for other html fields using ID and textContent to replace values
             $("#temp-title").text(tempTitle);
             populateMovie(movieTitle);
-        })
-};
+ });
+}
 
 //given the temperature string (hot, cold, or perfect) 
 //choose a random movie from respective object in movieTable
@@ -74,6 +77,7 @@ function populateMovie(movieTitle) {
             return response.json();
         })
         .then(function (movieData) {
+            $('.movie-info').empty();
             console.log(movieData);
             $('#movie-title').text(movieData.Title);
             posterEl = document.createElement('img');
