@@ -1,25 +1,86 @@
-let hotGirlSummer = ["Holes", "National Lampoons Vacation", "The heat of the night", "The Good the Bad and the Ugly", "Avengers", "Mamma Mia", "Sisterhood of traveling pants", "Little Miss Sunshine", "500 Days of Summer", "Parent Trap", "Weekend at Bernies", "Spiderman","Booksmart", "Jaws"]
-let BrrrItsColdInHere = []
-let PerfectDay = []
 let searchButtonEl = document.querySelector("button");
 
 //When I enter my city into the search bar I will fetch the current weather from OpenWeatherAPI
 
-function searchWeather(city){
-    let currentWeather = document.querySelector('#current-weather').empty()
-    
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f38f6a7de25e9c5bfba8b768dc8d3f45&units=imperial`)
-    .then(response => response.json())
-    .then(response => {
-        //Check for correct city spelling and if correct run function
-        if (response.message === "city not found"){
-            alert("City not found, please check your spelling and try again.")
-        }else{
-            let weatherCard = document.querySelector("#weather-container").addClass('card');
-            const cityName = document.querySelector('<h3>').addClass('card-title').text(`${response.name}`)
-            const date = $('<h3>').addClass('card-title').text(new Date().toLocaleDateString())
-            const icon = $('<img>').attr('src', `http://openweathermap.org/img/w/${response.weather[0].icon}.png`);
-            const temp = $('<p>').addClass('card-text').text(`temperature: ${response.main.temp} °F`)
-            const humidity = $('<p>').addClass('card-text').text(`humidity: ${response.main.humidity} %`)
-            const wind = $('<p>').addClass('card-text').text(`wind-speed: ${response.wind.speed} mph`)
-            weatherCard.append(cityName, date, icon, temp, humidity, wind)
+
+let movieTable = {
+    "hot": ["Holes", "National+Lampoons+Vacation", "The+heat+of+the+night", "The+Good+the+Bad+and the+Ugly", "Avengers", "Mamma+Mia", "Sisterhood+of+traveling+pants", "Little+Miss+Sunshine", "500+Days+of Summer", "Parent+Trap", "Weekend+at+Bernies", "Spiderman", "Booksmart", "Jaws"],
+    "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday”, “The+Nightmare+Before+Christmas”, “Knives+Out”, “About+Time”, “Titanic”, “Elf”, “The+Day+After+Tomorrow"],
+    "perfect": ["Sandlot", "Almost+Famous", "The+Royal+Tenenbaums", "School+of+rock", "Casino+Royale", "Anchorman", "Up", "Inside-Out", "Boyhood", "Pleasanton", "Remember+the+Titans", "La+La+Land", "Ferris+Bueller", "Palm+Springs", "Forgetting+Sarah+Marshall", "Selena"]
+}
+//identify ranges for temperature
+let coldTempMax = 59
+let perfectTempMax = 79;
+
+//call the displayCity function when button is clicked
+
+let appID = "d1dfd9b71c61f4f9b6151a02ee936efa"
+
+
+
+
+document.getElementById('search-button').addEventListener('click', function() {
+    console.log('click')
+    let searchCity = document.querySelector('#search-bar').value
+    console.log(searchCity)
+    localStorage.setItem("searchName", searchCity)
+    getWeather(searchCity)
+    //userSearch(searchCity)
+})
+
+function getWeather(searchCity) {
+    //default to SB for testing purposes
+    //searchCity = 'Santa Barbara'
+    fetch(
+        `http://api.openweathermap.org/data/2.5/weather?&appid=${appID}&q=${searchCity}` + '&units=imperial'
+
+    )
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            //handle error for invalid city inputs
+            if (data.cod == 404) {
+                alert("Hmmm, sorry, I couldn't identify your city. Try a different city.");
+                return;
+            }
+            let temp = data.main.temp;
+            let tempTitle = "";
+            if (temp <= coldTempMax) {
+                tempTitle = `${temp}  ºF in ${searchCity}. Brr its cold..why you don't grab some hot cocoa and watch...`
+                movieTitle = getRandomMovie('cold');
+            } else if (temp <= perfectTempMax) {
+                tempTitle = `${temp} ºF in ${searchCity}. Weather looks perfect! Lets sit  back and enjoy...`
+                movieTitle = getRandomMovie('perfect');
+            } else {
+                tempTitle = `${temp} ºF in ${searchCity} today! Too hot in here...You shoudl watch..`
+            //update content for other html fields using ID and textContent to replace values
+            $("#temp-title").text(tempTitle);
+            populateMovie(movieTitle);
+        })
+};
+
+//given the temperature string (hot, cold, or perfect) 
+//choose a random movie from respective object in movieTable
+function getRandomMovie(tempVal) {
+    movieList = movieTable[tempVal];
+    return movieList[Math.floor(Math.random() * movieList.length)];
+}
+
+function populateMovie(movieTitle) {
+    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=fc773945&t=${movieTitle}`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (movieData) {
+            console.log(movieData);
+            $('#movie-title').text(movieData.Title);
+            posterEl = document.createElement('img');
+            $('.movie-info').append(posterEl);
+            $(posterEl).attr('src', movieData.Poster);
+        })
+
+}
+
+
