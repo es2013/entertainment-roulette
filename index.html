@@ -31,21 +31,26 @@
     <div class="pure-u">
         <div class="pure-u-2-5"> <!--Enter city Here-->
             <div class="control" id="cityInput">
-                <input class="input is-focused col-md-6" type="text" placeholder="Enter Your City here">
+    <input class="input is-focused col-md-6" type="text" placeholder="Enter City here" id="search-bar">
+
             </div>
 
             <div id="cityButtons"> <!--Search for City-->
-                <button class="button is-dark" color="#fffff" onclick="getWeather()" type="button">search</i></button>
+                <button class="button is-dark" color="#fffff" type="button" id="search-button">search</i></button>
 
                 <ul></ul>
             </div>
         </div>
-        <div class="pure-u-4-5 movie-info">
+        <div class="pure-u-4-5">
             <section class="section"> <!--Place cardholder here-->
                 <h1 class="title" id="temp-title">Waiting to pick your perfect movie...</h1>
                 <h2 class="subtitle" id="movie-title">
                 A simple way to randomly pick a movie based on <strong>Your Weather</strong>, leave it up to Mother nature to help decide your binge.
                 </h2>
+                <div id="weather-container"></div>
+                <div class="movie-info">
+
+                </div>
             </section>
         </div>
     </div>
