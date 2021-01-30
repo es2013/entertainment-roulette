@@ -1,5 +1,8 @@
 let searchButtonEl = document.querySelector("button");
 
+//When I enter my city into the search bar I will fetch the current weather from OpenWeatherAPI
+
+
 let movieTable = {
     "hot": ["Holes", "National+Lampoons+Vacation", "The+heat+of+the+night", "The+Good+the+Bad+and the+Ugly", "Avengers", "Mamma+Mia", "Sisterhood+of+traveling+pants", "Little+Miss+Sunshine", "500+Days+of Summer", "Parent+Trap", "Weekend+at+Bernies", "Spiderman", "Booksmart", "Jaws"],
     "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday”, “The+Nightmare+Before+Christmas”, “Knives+Out”, “About+Time”, “Titanic”, “Elf”, “The+Day+After+Tomorrow"],
@@ -13,9 +16,21 @@ let perfectTempMax = 79;
 
 let appID = "d1dfd9b71c61f4f9b6151a02ee936efa"
 
-function getWeather() {
-    //defaultn to SB for testing purposes
-    searchCity = 'Santa Barbara'
+
+
+
+document.getElementById('search-button').addEventListener('click', function() {
+    console.log('click')
+    let searchCity = document.querySelector('#search-bar').value
+    console.log(searchCity)
+    localStorage.setItem("searchName", searchCity)
+    getWeather(searchCity)
+    //userSearch(searchCity)
+})
+
+function getWeather(searchCity) {
+    //default to SB for testing purposes
+    //searchCity = 'Santa Barbara'
     fetch(
         `http://api.openweathermap.org/data/2.5/weather?&appid=${appID}&q=${searchCity}` + '&units=imperial'
 
@@ -33,15 +48,13 @@ function getWeather() {
             let temp = data.main.temp;
             let tempTitle = "";
             if (temp <= coldTempMax) {
-                tempTitle = `${temp} Brr its cold..why you don't grab some hot cocoa and watch...`
+                tempTitle = `${temp}  ºF in ${searchCity}. Brr its cold..why you don't grab some hot cocoa and watch...`
                 movieTitle = getRandomMovie('cold');
             } else if (temp <= perfectTempMax) {
-                tempTitle = `${temp} ºF Weather looks perfect...why don't you enjoy....`
+                tempTitle = `${temp} ºF in ${searchCity}. Weather looks perfect! Lets sit  back and enjoy...`
                 movieTitle = getRandomMovie('perfect');
             } else {
-                tempTitle = `${temp} ºF today! Here's is a movie for this hot weather`
-                movieTitle = getRandomMovie('hot');
-            }
+                tempTitle = `${temp} ºF in ${searchCity} today! Too hot in here...You shoudl watch..`
             //update content for other html fields using ID and textContent to replace values
             $("#temp-title").text(tempTitle);
             populateMovie(movieTitle);
