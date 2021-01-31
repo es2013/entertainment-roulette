@@ -4,7 +4,7 @@ let searchButtonEl = document.querySelector("button");
 
 
 let movieTable = {
-    "hot": ["Holes", "National+Lampoons+Vacation", "The+heat+of+the+night", "The+Good+the+Bad+and the+Ugly", "Avengers", "Mamma+Mia", "Sisterhood+of+traveling+pants", "Little+Miss+Sunshine", "500+Days+of Summer", "Parent+Trap", "Weekend+at+Bernies", "Spiderman", "Booksmart", "Jaws"],
+    "hot": ["Holes", "Lion+King", "the+hangover", "Grease", "Avengers", "end+of+the+world", "white+chicks", "Little+Miss+Sunshine", "500+Days+of+Summer", "Parent+Trap","the+emperor's+new+groove", "Weekend+at+Bernies", "the+dark+knight", "Booksmart", "Jaws","10+things+i+hate+about+you","the+cat+in+the+hat"],
     "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday”, “The+Nightmare+Before+Christmas”, “Knives+Out”, “About+Time”, “Titanic”, “Elf”, “The+Day+After+Tomorrow"],
     "perfect": ["Sandlot", "Almost+Famous", "The+Royal+Tenenbaums", "School+of+rock", "Casino+Royale", "Anchorman", "Up", "Inside-Out", "Boyhood", "Pleasanton", "Remember+the+Titans", "La+La+Land", "Ferris+Bueller", "Palm+Springs", "Forgetting+Sarah+Marshall", "Selena"]
 }
