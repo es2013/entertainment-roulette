@@ -6,7 +6,9 @@
 .button {
     margin: 10px;
 }
-
+.hero{
+    text-align: center;
+}
 footer {
     text-align: center;
 }
