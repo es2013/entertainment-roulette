@@ -1,7 +1,12 @@
 .pure-u {
     padding: 20px;
+    text-align: center;
 }
 
 .button {
     margin: 10px;
+}
+
+footer {
+    text-align: center;
 }
