@@ -5,8 +5,8 @@ let searchButtonEl = document.querySelector("button");
 
 let movieTable = {
     "hot": ["Holes", "National+Lampoons+Vacation", "The+heat+of+the+night", "The+Good+the+Bad+and the+Ugly", "Avengers", "Mamma+Mia", "Sisterhood+of+traveling+pants", "Little+Miss+Sunshine", "500+Days+of Summer", "Parent+Trap", "Weekend+at+Bernies", "Spiderman", "Booksmart", "Jaws"],
-    "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday”, “The+Nightmare+Before+Christmas”, “Knives+Out”, “About+Time”, “Titanic”, “Elf”, “The+Day+After+Tomorrow"],
-    "perfect": ["Sandlot", "Almost+Famous", "The+Royal+Tenenbaums", "School+of+rock", "Casino+Royale", "Anchorman", "Up", "Inside-Out", "Boyhood", "Pleasanton", "Remember+the+Titans", "La+La+Land", "Ferris+Bueller", "Palm+Springs", "Forgetting+Sarah+Marshall", "Selena"]
+    "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday”, “The+Nightmare+Before+Christmas”, “Knives+Out”, “About+Time”, “Titanic”, “Elf”, “The+Day+After+Tomorrow", "The+Thing", "Wind+River", "The+Grinch", "The+Revenant", "Into+The+Wild", "Ice+Age", "Snow+Day", "Cool+Runnings", "Fargo", "I,+Tonya", "Fargo", "The+Hateful+Eight", "The+Mighty+Ducks"],
+    "perfect": ["The+Sandlot", "Almost+Famous", "The+Royal+Tenenbaums", "School+of+rock", "Casino+Royale", "Tropic+Thunder", "Up", "Inside+Out", "Boyhood", "Pleasanton", "Remember+the+Titans", "La+La+Land", "Blue+Crush", "Palm+Springs", "Forgetting+Sarah+Marshall", "Selena", "Point+Break", "Once+Upon+A+Time+In+...Hollywood", "Dope", "Jurassic+Park", "Tomb+Raider", "Black+Panther"]
 }
 //identify ranges for temperature
 let coldTempMax = 59
