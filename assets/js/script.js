@@ -55,7 +55,8 @@ function getWeather(searchCity) {
                 tempTitle = `${temp} ºF in ${searchCity}. Weather looks perfect! Lets sit  back and enjoy...`
                 movieTitle = getRandomMovie('perfect');
             } else {
-                tempTitle = `${temp} ºF in ${searchCity} today! Too hot in here...You shoudl watch..`
+                tempTitle = `${temp} ºF in ${searchCity} today! Too hot in here...You should watch..`;
+                movieTitle = getRandomMovie('hot');
                 
             }
             //update content for other html fields using ID and textContent to replace values
