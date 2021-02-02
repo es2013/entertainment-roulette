@@ -63,6 +63,8 @@ function getWeather(searchCity) {
             //update content for other html fields using ID and textContent to replace values
             $("#temp-title").text(tempTitle);
             populateMovie(movieTitle);
+
+            showCities();
  });
 }
 
@@ -89,4 +91,28 @@ function populateMovie(movieTitle) {
 
 }
 
+function showCities() {
+    $(".list").empty(); 
+    let arrayFromStorage = JSON.parse(localStorage.getItem("allCities")) || []; 
+    arrayLength = arrayFromStorage.length; 
 
+    //create for loop to display the cities
+    for (let i = 0; i < arrayLength; i++) { 
+        let cityNameFromArray = arrayFromStorage[i]; 
+
+        $(".list").append (
+            "<div class='input'>"
+
+            + "<button class='button'>" + cityNameFromArray
+            + "</button>"
+        )
+
+    }//for loop
+}//showCities
+showCities();
+
+$("#cityButtons").on("click", ".button", function(event) {
+    event.preventDefault();
+    cityInput = ($(this).text());
+    getWeather(cityInput);
+});

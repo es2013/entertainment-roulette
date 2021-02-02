@@ -1,15 +1,52 @@
 .pure-u {
     padding: 20px;
     text-align: center;
-  
 }
 
 .button {
     margin: 10px;
 }
-.hero{
+
+ul {
+    color: var(--secondary-color);
+    font-size: 18px;
+    line-height: 24px;
+    padding-left: 20px;
+}
+
+.cityButtons {
+    margin-bottom:0;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.input {
+    margin: 10px;
+}
+
+div.input {
+    border: none;
+}
+.movie-info {
     text-align: center;
 }
+
 footer {
     text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+    .pure {
+        text-align: center;
+        padding: 0 auto;
+        width: 100%;
+    }
+}
+    
+    @media screen and (max-width: 768px) {
+    .pure {
+        text-align: center;
+        padding: 0 auto;
+        width: 100%;
+    }
 }
