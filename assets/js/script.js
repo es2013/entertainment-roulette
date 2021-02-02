@@ -1,41 +1,29 @@
 let searchButtonEl = document.querySelector("button");
-
+let arrayFromStorage = JSON.parse(localStorage.getItem("searchCity")) || [];
 //When I enter my city into the search bar I will fetch the current weather from OpenWeatherAPI
-
-
 let movieTable = {
-
     "hot": ["Holes", "National+Lampoons+Vacation", "The+heat+of+the+night", "The+Good+the+Bad+and the+Ugly", "Avengers", "Mamma+Mia", "Sisterhood+of+traveling+pants", "Little+Miss+Sunshine", "500+Days+of Summer", "Parent+Trap", "Weekend+at+Bernies", "Spiderman", "Booksmart", "Jaws"],
-    "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday”, “The+Nightmare+Before+Christmas”, “Knives+Out”, “About+Time”, “Titanic”, “Elf”, “The+Day+After+Tomorrow", "The+Thing", "Wind+River", "The+Grinch", "The+Revenant", "Into+The+Wild", "Ice+Age", "Snow+Day", "Cool+Runnings", "Fargo", "I,+Tonya", "Fargo", "The+Hateful+Eight", "The+Mighty+Ducks"],
+    "cold": ["Frozen", "Snowpiercer", "Love+Actually", "The+Holiday", "The+Nightmare+Before+Christmas", "Knives+Out", "About+Time", "Titanic", "Elf", "The+Day+After+Tomorrow", "The+Thing", "Wind+River", "The+Grinch", "The+Revenant", "Into+The+Wild", "Ice+Age", "Snow+Day", "Cool+Runnings", "Fargo", "I,+Tonya", "Fargo", "The+Hateful+Eight", "The+Mighty+Ducks"],
     "perfect": ["The+Sandlot", "Almost+Famous", "The+Royal+Tenenbaums", "School+of+rock", "Casino+Royale", "Tropic+Thunder", "Up", "Inside+Out", "Boyhood", "Pleasanton", "Remember+the+Titans", "La+La+Land", "Blue+Crush", "Palm+Springs", "Forgetting+Sarah+Marshall", "Selena", "Point+Break", "Once+Upon+A+Time+In+...Hollywood", "Dope", "Jurassic+Park", "Tomb+Raider", "Black+Panther"]
 }
 //identify ranges for temperature
 let coldTempMax = 59
 let perfectTempMax = 79;
-
 //call the displayCity function when button is clicked
-
 let appID = "d1dfd9b71c61f4f9b6151a02ee936efa"
-
-
-
-
 document.getElementById('search-button').addEventListener('click', function () {
     console.log('click')
     let searchCity = document.querySelector('#search-bar').value
     console.log(searchCity)
-    localStorage.setItem("searchName", searchCity)
+    arrayFromStorage.push(searchCity)
+    localStorage.setItem("searchCity", JSON.stringify(arrayFromStorage))
     getWeather(searchCity)
     //userSearch(searchCity)
 })
-
 function getWeather(searchCity) {
-
     document.querySelector('.section').empty
-
     fetch(
         `http://api.openweathermap.org/data/2.5/weather?&appid=${appID}&q=${searchCity}` + '&units=imperial'
-
     )
         .then(function (response) {
             return response.json();
@@ -58,23 +46,19 @@ function getWeather(searchCity) {
             } else {
                 tempTitle = `${temp} ºF in ${searchCity} today! Too hot in here...You should watch..`;
                 movieTitle = getRandomMovie('hot');
-                
             }
             //update content for other html fields using ID and textContent to replace values
             $("#temp-title").text(tempTitle);
             populateMovie(movieTitle);
-
             showCities();
  });
 }
-
 //given the temperature string (hot, cold, or perfect) 
 //choose a random movie from respective object in movieTable
 function getRandomMovie(tempVal) {
     movieList = movieTable[tempVal];
     return movieList[Math.floor(Math.random() * movieList.length)];
 }
-
 function populateMovie(movieTitle) {
     fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=fc773945&t=${movieTitle}`)
         .then(function (response) {
@@ -88,30 +72,23 @@ function populateMovie(movieTitle) {
             $('.movie-info').append(posterEl);
             $(posterEl).attr('src', movieData.Poster);
         })
-
 }
-
 function showCities() {
-    $(".list").empty(); 
-    let arrayFromStorage = JSON.parse(localStorage.getItem("allCities")) || []; 
+    console.log('About to show cities');
+    $("#list").empty(); 
     arrayLength = arrayFromStorage.length; 
-
     //create for loop to display the cities
     for (let i = 0; i < arrayLength; i++) { 
         let cityNameFromArray = arrayFromStorage[i]; 
-
-        $(".list").append (
+        $("#list").append (
             "<div class='input'>"
-
             + "<button class='button'>" + cityNameFromArray
             + "</button>"
         )
-
     }//for loop
 }//showCities
 showCities();
-
-$("#cityButtons").on("click", ".button", function(event) {
+$("#list").on("click", ".button", function(event) {
     event.preventDefault();
     cityInput = ($(this).text());
     getWeather(cityInput);
