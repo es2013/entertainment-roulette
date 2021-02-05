@@ -19,4 +19,5 @@ Entertainment Roulette helps users whittle down the exhausting activity of choos
 # Roadmap for future developments
 Adding more movies to our database and other inputs to choose a movie other than weather. 
 
-#
+<img width="842" alt="ERoulette" src="https://user-images.githubusercontent.com/75404915/106562930-e1942880-64df-11eb-8f08-142a4f2bf161.PNG">
+
