@@ -1,10 +1,31 @@
+html, body{
+    background: #f2f2f2 !important;
+}
 .hero {
     text-align: center;
+    background-image: url("../images/roulette-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    height:auto!important;
+    min-height:40vh;
+}
+.hero-body{
+    background: rgba(0,0,0,.5);
 }
 
 .pure-u {
     padding: 20px;
     text-align: center;
+}
+p.title{
+    font-size: 6vw;
+}
+p.subtitle{
+    font-size: 2vw;
+}
+
+.pure-g{
+    background: #f2f2f2;
 }
 
 .button {
@@ -24,12 +45,16 @@ ul {
     border-bottom-left-radius: .25rem;
 }
 
+img {
+    border-style: solid !important;
+}
 .input {
     margin: 10px;
 }
 
 div.input {
     border: none;
+    background: none;
 }
 .movie-info {
     text-align: center;
@@ -37,7 +62,16 @@ div.input {
 
 footer {
     text-align: center;
-}
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:#333;
+    color: white;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+ }
+ 
 
 @media screen and (max-width: 576px) {
     .pure {
